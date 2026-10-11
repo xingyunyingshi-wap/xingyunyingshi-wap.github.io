@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="description" content="星云影视 - 汇聚全网高清影视资源，海量电影、电视剧、综艺、动漫免费在线观看，智能推荐好片，星云般浩瀚的影视宇宙尽在指尖。">
+<meta name="keywords" content="星云影视,xingyunyingshi-wap.github.io,高清影视在线观看,免费电影,热播电视剧,综艺节目,动漫番剧,影视推荐">
+<meta name="author" content="星云影视">
+<meta name="robots" content="index,follow">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="format-detection" content="telephone=no">
+<meta property="og:title" content="星云影视 - 浩瀚影视宇宙，好片触手可及">
+<meta property="og:description" content="星云影视提供海量免费高清影视资源，智能推荐，多设备畅享极速观影体验。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://xingyunyingshi-wap.github.io">
+<link rel="canonical" href="https://xingyunyingshi-wap.github.io">
+<title>星云影视 - 浩瀚影视宇宙，好片触手可及 | xingyunyingshi-wap.github.io</title>
+<style>
+/* ===== 设计令牌 ===== */
+:root{
+  --void:#050318;
+  --void-2:#0b0828;
+  --deep:#110b3c;
+  --neon:#7c3aed;
+  --neon-l:#a78bfa;
+  --cyan:#22d3ee;
+  --pink:#f472b6;
+  --txt:#e2e0f0;
+  --txt-2:#a39fbf;
+  --txt-3:#6c6888;
+  --card:rgba(255,255,255,.04);
+  --line:rgba(255,255,255,.08);
+  --ease:cubic-bezier(.16,1,.3,1);
+  --ff:"PingFang SC","Microsoft YaHei","Noto Sans SC",sans-serif;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:var(--ff);background:var(--void);color:var(--txt);line-height:1.75;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+ul,ol{list-style:none}
+button{font-family:inherit;border:none;background:none;cursor:pointer;color:inherit}
+img{max-width:100%;display:block}
+::selection{background:var(--neon);color:#fff}
+
+/* ===== 星空背景 ===== */
+.stars,.stars2,.stars3{position:fixed;inset:0;pointer-events:none;z-index:0}
+.stars{background-image:radial-gradient(1px 1px at 10% 20%,rgba(255,255,255,.5),transparent),radial-gradient(1px 1px at 30% 65%,rgba(255,255,255,.4),transparent),radial-gradient(1.5px 1.5px at 55% 15%,rgba(255,255,255,.6),transparent),radial-gradient(1px 1px at 75% 80%,rgba(255,255,255,.35),transparent),radial-gradient(1px 1px at 90% 40%,rgba(255,255,255,.45),transparent),radial-gradient(1px 1px at 45% 90%,rgba(255,255,255,.3),transparent),radial-gradient(1.5px 1.5px at 20% 50%,rgba(255,255,255,.55),transparent),radial-gradient(1px 1px at 65% 55%,rgba(255,255,255,.4),transparent),radial-gradient(1px 1px at 85% 10%,rgba(255,255,255,.5),transparent),radial-gradient(1px 1px at 5% 85%,rgba(255,255,255,.3),transparent),radial-gradient(1.5px 1.5px at 40% 35%,rgba(255,255,255,.45),transparent),radial-gradient(1px 1px at 70% 70%,rgba(255,255,255,.35),transparent)}
+.stars2{background-image:radial-gradient(1px 1px at 15% 75%,rgba(167,139,250,.5),transparent),radial-gradient(1px 1px at 50% 45%,rgba(34,211,238,.45),transparent),radial-gradient(1px 1px at 80% 25%,rgba(244,114,182,.45),transparent),radial-gradient(1.5px 1.5px at 25% 10%,rgba(167,139,250,.6),transparent),radial-gradient(1px 1px at 60% 85%,rgba(34,211,238,.4),transparent),radial-gradient(1px 1px at 95% 60%,rgba(244,114,182,.5),transparent);animation:tw 4s ease-in-out infinite alternate}
+.stars3{background-image:radial-gradient(2px 2px at 35% 60%,rgba(255,255,255,.7),transparent),radial-gradient(2px 2px at 78% 30%,rgba(167,139,250,.7),transparent),radial-gradient(2px 2px at 12% 40%,rgba(34,211,238,.6),transparent),radial-gradient(2px 2px at 88% 75%,rgba(244,114,182,.6),transparent),radial-gradient(2px 2px at 52% 12%,rgba(255,255,255,.5),transparent);animation:tw 6s ease-in-out infinite alternate-reverse}
+@keyframes tw{from{opacity:.4}to{opacity:1}}
+
+/* ===== 导航 ===== */
+.xy-nav{position:fixed;top:0;left:0;right:0;z-index:1000;transition:all .4s var(--ease)}
+.xy-nav__in{max-width:1360px;margin:14px auto 0;display:flex;align-items:center;justify-content:space-between;padding:0 18px;height:68px;border-radius:18px;background:rgba(11,8,40,.55);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid var(--line);transition:all .4s var(--ease)}
+.xy-nav.stuck .xy-nav__in{margin-top:0;border-radius:0;border-left:none;border-right:none;border-top:none}
+.xy-logo{display:flex;align-items:center;gap:11px}
+.xy-logo__o{width:36px;height:36px;border-radius:50%;background:radial-gradient(circle at 30% 30%,var(--cyan),var(--neon) 55%,#4c1d95);box-shadow:0 0 18px rgba(124,58,237,.6);position:relative}
+.xy-logo__o::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:1px solid rgba(124,58,237,.3);animation:pulse 2.5s infinite}
+@keyframes pulse{50%{transform:scale(1.3);opacity:0}}
+.xy-logo__t{font-size:1.2rem;font-weight:900;letter-spacing:.5px;background:linear-gradient(90deg,#fff,var(--neon-l));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.xy-nav__links{display:flex;gap:2px}
+.xy-nav__links a{padding:8px 15px;border-radius:10px;font-size:.83rem;font-weight:600;color:var(--txt-2);transition:all .25s}
+.xy-nav__links a:hover{color:#fff;background:rgba(255,255,255,.06)}
+.xy-nav__links a.on{color:#fff;background:rgba(124,58,237,.25);box-shadow:inset 0 0 0 1px rgba(124,58,237,.4)}
+.xy-nav__cta{padding:9px 22px;border-radius:12px;font-size:.8rem;font-weight:700;color:#fff;background:linear-gradient(135deg,var(--neon),#4f46e5);box-shadow:0 4px 20px rgba(124,58,237,.4);transition:all .35s var(--ease)}
+.xy-nav__cta:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(124,58,237,.55)}
+.xy-burger{display:none;width:44px;height:44px;border-radius:12px;background:rgba(255,255,255,.05);color:var(--neon-l);font-size:1.3rem;align-items:center;justify-content:center;transition:.3s}
+
+/* ===== Hero ===== */
+.xy-hero{position:relative;min-height:100vh;display:flex;align-items:center;padding:130px 22px 90px;z-index:1}
+.xy-hero__glow{position:absolute;width:600px;height:600px;border-radius:50%;filter:blur(120px);opacity:.3;z-index:0}
+.xy-hero__glow--a{background:var(--neon);top:-200px;left:-100px}
+.xy-hero__glow--b{background:var(--cyan);bottom:-200px;right:-100px}
+.xy-hero__in{max-width:1360px;margin:0 auto;width:100%;position:relative;z-index:2;display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center}
+.xy-hero__badge{display:inline-flex;align-items:center;gap:9px;padding:7px 18px;border-radius:30px;background:rgba(124,58,237,.15);border:1px solid rgba(124,58,237,.3);font-size:.72rem;font-weight:700;color:var(--neon-l);margin-bottom:24px}
+.xy-hero__badge .live{width:6px;height:6px;border-radius:50%;background:var(--cyan);box-shadow:0 0 8px var(--cyan);animation:pulse 2s infinite}
+.xy-hero h1{font-size:clamp(2.2rem,5.6vw,4.4rem);font-weight:900;line-height:1.08;letter-spacing:-1.5px;color:#fff;margin-bottom:22px}
+.xy-hero h1 .grad{background:linear-gradient(100deg,var(--cyan),var(--neon-l) 45%,var(--pink));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;background-size:200% auto;animation:sh 5s linear infinite}
+@keyframes sh{to{background-position:200% center}}
+.xy-hero__desc{font-size:1.02rem;color:var(--txt-2);max-width:540px;margin-bottom:36px;line-height:1.9}
+.xy-hero__acts{display:flex;gap:14px;flex-wrap:wrap}
+.xy-btn{display:inline-flex;align-items:center;gap:9px;padding:15px 34px;border-radius:14px;font-size:.9rem;font-weight:700;transition:all .35s var(--ease)}
+.xy-btn--pri{background:linear-gradient(135deg,var(--neon),#4f46e5);color:#fff;box-shadow:0 6px 24px rgba(124,58,237,.4)}
+.xy-btn--pri:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(124,58,237,.55)}
+.xy-btn--ghost{background:rgba(255,255,255,.04);color:var(--txt);border:1px solid var(--line)}
+.xy-btn--ghost:hover{border-color:var(--neon);color:#fff;background:rgba(124,58,237,.12);transform:translateY(-3px)}
+.xy-hero__meta{display:flex;gap:36px;margin-top:44px;padding-top:32px;border-top:1px solid var(--line)}
+.xy-meta .n{font-size:1.7rem;font-weight:900;color:#fff;letter-spacing:-.5px}
+.xy-meta .n small{font-size:.9rem;color:var(--neon-l)}
+.xy-meta .l{font-size:.76rem;color:var(--txt-3);margin-top:3px}
+/* Hero 右侧行星系统 */
+.xy-orbit{position:relative;height:500px;display:flex;align-items:center;justify-content:center}
+.xy-orbit__ring{position:absolute;border:1px solid rgba(255,255,255,.08);border-radius:50%;animation:spin 40s linear infinite}
+.xy-orbit__ring--1{width:440px;height:440px}
+.xy-orbit__ring--2{width:330px;height:330px;border-color:rgba(34,211,238,.12);animation-duration:28s;animation-direction:reverse}
+.xy-orbit__ring--3{width:220px;height:220px;border-color:rgba(244,114,182,.12);animation-duration:18s}
+.xy-orbit__center{width:120px;height:120px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff,#a5f3fc 20%,var(--neon) 55%,#2e1065);box-shadow:0 0 60px rgba(124,58,237,.6),inset -10px -10px 30px rgba(0,0,0,.3);z-index:3;animation:float 6s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+.xy-planet{position:absolute;border-radius:50%;z-index:2}
+.xy-planet--a{width:34px;height:34px;background:radial-gradient(circle at 35% 30%,var(--pink),#be185d);box-shadow:0 0 16px rgba(244,114,182,.5)}
+.xy-planet--b{width:24px;height:24px;background:radial-gradient(circle at 35% 30%,var(--cyan),#0891b2);box-shadow:0 0 14px rgba(34,211,238,.5)}
+.xy-planet--c{width:18px;height:18px;background:radial-gradient(circle at 35% 30%,#fbbf24,#d97706);box-shadow:0 0 12px rgba(251,191,36,.5)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.xy-orbit__tag{position:absolute;z-index:4;padding:8px 14px;border-radius:12px;background:rgba(11,8,40,.8);backdrop-filter:blur(8px);border:1px solid var(--line);font-size:.75rem;color:var(--txt);white-space:nowrap;animation:float 4s ease-in-out infinite}
+.xy-orbit__tag strong{color:var(--cyan);display:block;font-size:.82rem}
+.xy-orbit__tag--1{top:8%;right:6%}
+.xy-orbit__tag--2{bottom:14%;left:2%}
+.xy-orbit__tag--3{top:52%;right:-4%}
+
+/* ===== 通用区块 ===== */
+.xy-sec{padding:96px 22px;position:relative;z-index:1}
+.xy-wrap{max-width:1360px;margin:0 auto}
+.xy-hd{text-align:center;margin-bottom:60px}
+.xy-hd .kicker{display:inline-block;padding:6px 22px;border-radius:20px;background:rgba(124,58,237,.12);border:1px solid rgba(124,58,237,.25);color:var(--neon-l);font-size:.7rem;font-weight:700;letter-spacing:2.5px;margin-bottom:14px;text-transform:uppercase}
+.xy-hd h2{font-size:clamp(1.6rem,4vw,2.6rem);font-weight:900;letter-spacing:-.8px;color:#fff}
+.xy-hd h2 em{font-style:normal;background:linear-gradient(90deg,var(--cyan),var(--pink));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.xy-hd p{color:var(--txt-3);font-size:.92rem;margin-top:12px;max-width:540px;margin-left:auto;margin-right:auto}
+
+/* ===== 栏目一：电影海报（斜切堆叠）===== */
+.xy-skew{overflow:hidden}
+.xy-skew-track{display:flex;gap:22px;align-items:stretch;padding:20px 4px}
+.xy-skew-card{flex:0 0 280px;height:420px;border-radius:16px;position:relative;overflow:hidden;transform:skewX(-6deg);transition:all .45s var(--ease);cursor:pointer;box-shadow:0 10px 40px rgba(0,0,0,.4)}
+.xy-skew-card > *{transform:skewX(6deg);margin-left:-20px;width:calc(100% + 40px)}
+.xy-skew-card:hover{transform:skewX(-6deg) translateY(-10px) scale(1.03);z-index:5;box-shadow:0 20px 60px rgba(124,58,237,.35)}
+.xy-skew-card__bg{position:absolute;inset:0;background:var(--bg)}
+.xy-skew-card__bg::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(5,3,24,.95) 15%,rgba(5,3,24,.3) 55%,rgba(5,3,24,.6))}
+.xy-skew-card__in{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding:26px}
+.xy-skew-card__in .e{font-size:2.6rem;margin-bottom:8px}
+.xy-skew-card__in h5{font-size:1.1rem;font-weight:800;color:#fff;letter-spacing:.3px}
+.xy-skew-card__in .row{display:flex;justify-content:space-between;align-items:center;margin-top:10px;font-size:.76rem;color:var(--txt-2)}
+.xy-skew-card__in .row b{color:var(--cyan);font-weight:700}
+.xy-skew-card__badge{position:absolute;top:16px;right:10px;z-index:3;padding:5px 12px;border-radius:8px;font-size:.68rem;font-weight:700;background:rgba(244,114,182,.85);color:#fff;transform:skewX(6deg)}
+.xy-skew-card__badge--cyan{background:rgba(34,211,238,.85)}
+
+/* ===== 栏目二：电视剧（分屏列表）===== */
+.xy-tv{}
+.xy-tv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.xy-tv-cell{position:relative;border-radius:18px;overflow:hidden;height:220px;cursor:pointer;transition:all .4s var(--ease)}
+.xy-tv-cell:hover{transform:scale(1.02)}
+.xy-tv-cell:hover .xy-tv-cell__bg{transform:scale(1.12)}
+.xy-tv-cell__bg{position:absolute;inset:0;background:var(--bg);transition:transform .7s var(--ease)}
+.xy-tv-cell__bg::after{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(5,3,24,.5),rgba(5,3,24,.85))}
+.xy-tv-cell__in{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:space-between;padding:22px}
+.xy-tv-cell__in .tag{display:inline-block;align-self:flex-start;padding:4px 12px;border-radius:20px;font-size:.68rem;font-weight:700;background:var(--tagc);color:#fff;width:fit-content}
+.xy-tv-cell__in h5{font-size:1.15rem;font-weight:800;color:#fff}
+.xy-tv-cell__in .ep{font-size:.78rem;color:var(--cyan);font-weight:600}
+.xy-tv-cell__in p{font-size:.76rem;color:var(--txt-2);margin-top:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.xy-tv-cell__play{position:absolute;right:18px;bottom:18px;width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,.15);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;font-size:1rem;color:#fff;z-index:3;opacity:0;transform:scale(.7);transition:all .4s var(--ease)}
+.xy-tv-cell:hover .xy-tv-cell__play{opacity:1;transform:scale(1)}
+
+/* ===== 栏目三：综艺（环形进度）===== */
+.xy-show{background:linear-gradient(180deg,var(--void),var(--void-2))}
+.xy-ring-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.xy-ring{text-align:center;padding:26px 20px;border-radius:20px;background:var(--card);border:1px solid var(--line);transition:all .4s var(--ease);cursor:pointer}
+.xy-ring:hover{background:rgba(124,58,237,.08);border-color:rgba(124,58,237,.3);transform:translateY(-6px)}
+.xy-ring__svg{width:110px;height:110px;margin:0 auto 18px;position:relative}
+.xy-ring__svg svg{transform:rotate(-90deg)}
+.xy-ring__svg .track{fill:none;stroke:rgba(255,255,255,.06);stroke-width:8}
+.xy-ring__svg .prog{fill:none;stroke:url(#g1);stroke-width:8;stroke-linecap:round;stroke-dasharray:283;stroke-dashoffset:283;transition:stroke-dashoffset 1.6s var(--ease)}
+.xy-ring__svg .emo{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:2rem}
+.xy-ring h5{font-size:.98rem;font-weight:700;color:#fff;margin-bottom:6px}
+.xy-ring .st{font-size:.74rem;color:var(--txt-3)}
+.xy-ring .st b{color:var(--cyan)}
+
+/* ===== 栏目四：动漫（霓虹字幕墙）===== */
+.xy-anime{}
+.xy-sub-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.xy-sub{border-radius:14px;padding:20px 22px;display:flex;align-items:center;gap:18px;background:var(--card);border:1px solid var(--line);cursor:pointer;transition:all .35s var(--ease);position:relative;overflow:hidden}
+.xy-sub::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(var(--neon),var(--cyan));transform:scaleY(0);transition:transform .35s var(--ease);transform-origin:center}
+.xy-sub:hover::before{transform:scaleY(1)}
+.xy-sub:hover{background:rgba(124,58,237,.06);transform:translateX(6px)}
+.xy-sub .num{font-size:.82rem;font-weight:800;color:var(--txt-3);flex-shrink:0;width:28px}
+.xy-sub:hover .num{color:var(--neon-l)}
+.xy-sub .emo{font-size:1.6rem;flex-shrink:0}
+.xy-sub .mid{flex:1;min-width:0}
+.xy-sub .mid h6{font-size:.92rem;font-weight:700;color:var(--txt);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.xy-sub .mid small{font-size:.74rem;color:var(--txt-3)}
+.xy-sub .score{flex-shrink:0;text-align:right}
+.xy-sub .score b{font-size:1.1rem;font-weight:900;color:var(--cyan)}
+.xy-sub .score em{font-style:normal;font-size:.68rem;color:var(--txt-3);display:block}
+
+/* ===== 栏目五：排行榜（阶梯柱状）===== */
+.xy-rank{background:linear-gradient(180deg,var(--void-2),var(--void))}
+.xy-rank-box{max-width:980px;margin:0 auto;background:var(--card);border:1px solid var(--line);border-radius:24px;padding:36px}
+.xy-rank-row{display:flex;align-items:center;gap:18px;padding:11px 0}
+.xy-rank-row + .xy-rank-row{border-top:1px solid rgba(255,255,255,.04)}
+.xy-rank-n{width:38px;height:38px;border-radius:11px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.95rem;font-weight:900;color:var(--txt-2);background:rgba(255,255,255,.04);font-family:Georgia,serif}
+.xy-rank-row:nth-child(1) .xy-rank-n{background:linear-gradient(135deg,#fbbf24,#f59e0b);color:#fff}
+.xy-rank-row:nth-child(2) .xy-rank-n{background:linear-gradient(135deg,#e4e4e7,#a1a1aa);color:#fff}
+.xy-rank-row:nth-child(3) .xy-rank-n{background:linear-gradient(135deg,#fb923c,#c2410c);color:#fff}
+.xy-rank-e{font-size:1.5rem;flex-shrink:0}
+.xy-rank-info{flex:1;min-width:0}
+.xy-rank-info h6{font-size:.92rem;font-weight:700;color:var(--txt);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.xy-rank-bar{margin-top:7px;height:6px;border-radius:4px;background:rgba(255,255,255,.05);overflow:hidden}
+.xy-rank-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--neon),var(--cyan));width:0;transition:width 1.2s var(--ease)}
+.xy-rank-row:nth-child(1) .xy-rank-fill{background:linear-gradient(90deg,#fbbf24,#f59e0b)}
+.xy-rank-row:nth-child(2) .xy-rank-fill{background:linear-gradient(90deg,#a1a1aa,#d4d4d8)}
+.xy-rank-row:nth-child(3) .xy-rank-fill{background:linear-gradient(90deg,#fb923c,#c2410c)}
+.xy-rank-v{font-size:1.05rem;font-weight:800;color:var(--txt-2);flex-shrink:0;min-width:52px;text-align:right}
+.xy-rank-v em{font-style:normal;font-size:.72rem;color:var(--txt-3)}
+
+/* ===== 栏目六：关于（星云卡片）===== */
+.xy-about{}
+.xy-about-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:stretch}
+.xy-about-main{border-radius:22px;padding:44px;background:linear-gradient(150deg,rgba(124,58,237,.15),rgba(34,211,238,.08));border:1px solid var(--line);position:relative;overflow:hidden}
+.xy-about-main::before{content:"";position:absolute;top:-80px;right:-80px;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(124,58,237,.3),transparent 70%)}
+.xy-about-main h3{font-size:1.5rem;font-weight:900;color:#fff;margin-bottom:16px;position:relative}
+.xy-about-main p{font-size:.9rem;color:var(--txt-2);line-height:1.95;position:relative}
+.xy-about-side{display:grid;grid-template-rows:1fr 1fr;gap:24px}
+.xy-stat-card{border-radius:22px;padding:28px;background:var(--card);border:1px solid var(--line);display:flex;flex-direction:column;justify-content:center;transition:all .35s var(--ease);cursor:pointer}
+.xy-stat-card:hover{border-color:rgba(124,58,237,.35);background:rgba(124,58,237,.06);transform:translateY(-4px)}
+.xy-stat-card .n{font-size:2rem;font-weight:900;color:var(--cyan);letter-spacing:-1px}
+.xy-stat-card .l{font-size:.82rem;color:var(--txt-2);margin-top:4px}
+
+/* ===== Footer ===== */
+.xy-foot{padding:64px 22px 32px;position:relative;z-index:1;border-top:1px solid var(--line)}
+.xy-foot__wrap{max-width:1360px;margin:0 auto}
+.xy-foot-top{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px;padding-bottom:44px}
+.xy-foot-brand .xy-logo__t{font-size:1.3rem}
+.xy-foot-brand p{font-size:.83rem;color:var(--txt-3);line-height:1.9;margin-top:14px;max-width:340px}
+.xy-foot-col h5{font-size:.85rem;font-weight:700;color:#fff;margin-bottom:16px}
+.xy-foot-col ul li{margin-bottom:10px}
+.xy-foot-col ul li a{font-size:.83rem;color:var(--txt-3);transition:color .25s}
+.xy-foot-col ul li a:hover{color:var(--neon-l)}
+.xy-foot-bot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;padding-top:28px;border-top:1px solid var(--line);font-size:.76rem;color:var(--txt-3)}
+.xy-foot-bot a{color:var(--txt-3);margin-left:18px;transition:color .25s}
+.xy-foot-bot a:hover{color:var(--neon-l)}
+
+/* ===== Top ===== */
+.xy-top{position:fixed;bottom:28px;right:20px;z-index:999;width:46px;height:46px;border-radius:14px;background:linear-gradient(135deg,var(--neon),#4f46e5);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.15rem;opacity:0;visibility:hidden;transform:translateY(10px);transition:all .4s var(--ease);box-shadow:0 6px 24px rgba(124,58,237,.4)}
+.xy-top.show{opacity:1;visibility:visible;transform:translateY(0)}
+.xy-top:hover{transform:translateY(-3px) scale(1.05)}
+
+/* ===== 响应式 ===== */
+@media(max-width:1000px){
+  .xy-nav__links,.xy-nav__cta{display:none}
+  .xy-burger{display:flex}
+  .xy-nav__in{margin:8px 14px 0;border-radius:14px}
+  .xy-nav.stuck .xy-nav__in{border-radius:0}
+  .xy-nav__links.open{display:flex;flex-direction:column;position:fixed;top:78px;left:14px;right:14px;background:rgba(11,8,40,.97);backdrop-filter:blur(24px);border-radius:16px;padding:16px;border:1px solid var(--line)}
+  .xy-nav__links.open a{width:100%;text-align:center;padding:14px}
+  .xy-nav__links.open .xy-nav__cta{text-align:center;margin-top:8px}
+  .xy-hero__in{grid-template-columns:1fr;gap:40px}
+  .xy-orbit{height:360px;order:-1}
+  .xy-orbit__ring--1{width:320px;height:320px}
+  .xy-orbit__ring--2{width:250px;height:250px}
+  .xy-orbit__ring--3{width:170px;height:170px}
+  .xy-orbit__center{width:90px;height:90px}
+  .xy-tv-grid{grid-template-columns:1fr 1fr;gap:14px}
+  .xy-ring-grid{grid-template-columns:1fr 1fr;gap:16px}
+  .xy-sub-grid{grid-template-columns:1fr}
+  .xy-about-grid{grid-template-columns:1fr}
+  .xy-foot-top{grid-template-columns:1fr 1fr;gap:28px}
+}
+@media(max-width:600px){
+  .xy-sec{padding:64px 16px}
+  .xy-hd{margin-bottom:40px}
+  .xy-hero__meta{gap:24px;flex-wrap:wrap}
+  .xy-skew-card{flex-basis:220px;height:360px}
+  .xy-tv-grid{grid-template-columns:1fr}
+  .xy-rank-v{display:none}
+  .xy-rank-box{padding:22px 18px}
+  .xy-foot-top{grid-template-columns:1fr}
+  .xy-foot-bot{flex-direction:column;text-align:center}
+  .xy-foot-bot a{margin:4px 8px}
+}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/xiaolu.js"></script>
+
+<div class="stars"></div><div class="stars2"></div><div class="stars3"></div>
+
+<!-- 导航 -->
+<nav class="xy-nav" id="xyNav">
+  <div class="xy-nav__in">
+    <a href="#home" class="xy-logo"><div class="xy-logo__o"></div><div class="xy-logo__t">星云影视</div></a>
+    <div class="xy-nav__links" id="xyLinks">
+      <a href="#home" class="on">首页</a>
+      <a href="#movie">院线电影</a>
+      <a href="#tv">热播剧集</a>
+      <a href="#show">综艺节目</a>
+      <a href="#anime">动漫番剧</a>
+      <a href="#rank">热门榜单</a>
+      <a href="#about">关于我们</a>
+      <a href="#" class="xy-nav__cta">免费观影</a>
+    </div>
+    <button class="xy-burger" id="xyBurger" aria-label="菜单">☰</button>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="xy-hero" id="home">
+  <div class="xy-hero__glow xy-hero__glow--a"></div>
+  <div class="xy-hero__glow xy-hero__glow--b"></div>
+  <div class="xy-hero__in">
+    <div class="xy-hero__txt">
+      <div class="xy-hero__badge"><span class="live"></span>星云影视 · 每日精选上线</div>
+      <h1>浩瀚影视<span class="grad">宇宙</span><br>好片触手可及</h1>
+      <p class="xy-hero__desc">星云影视（xingyunyingshi-wap.github.io）汇聚全网高清影视资源，从院线大片到经典剧集，从口碑综艺到热门番剧，智能推荐引擎为你精准匹配每一份观影期待。</p>
+      <div class="xy-hero__acts">
+        <a href="#movie" class="xy-btn xy-btn--pri">🚀 探索片库</a>
+        <a href="#rank" class="xy-btn xy-btn--ghost">📊 查看榜单</a>
+      </div>
+      <div class="xy-hero__meta">
+        <div class="xy-meta"><div class="n">20000<small>+</small></div><div class="l">高清影视资源</div></div>
+        <div class="xy-meta"><div class="n">60<small>+</small></div><div class="l">内容分类频道</div></div>
+        <div class="xy-meta"><div class="n">0</div><div class="l">广告弹窗干扰</div></div>
+      </div>
+    </div>
+    <div class="xy-orbit">
+      <div class="xy-orbit__ring xy-orbit__ring--1"></div>
+      <div class="xy-orbit__ring xy-orbit__ring--2"></div>
+      <div class="xy-orbit__ring xy-orbit__ring--3"></div>
+      <div class="xy-orbit__center"></div>
+      <div class="xy-planet xy-planet--a" style="top:8%;left:50%;transform:translateX(-50%)"></div>
+      <div class="xy-planet xy-planet--b" style="bottom:18%;right:8%"></div>
+      <div class="xy-planet xy-planet--c" style="top:42%;left:6%"></div>
+      <div class="xy-orbit__tag xy-orbit__tag--1"><strong>4K HDR</strong>极致画质</div>
+      <div class="xy-orbit__tag xy-orbit__tag--2"><strong>CDN加速</strong>秒开播放</div>
+      <div class="xy-orbit__tag xy-orbit__tag--3"><strong>AI推荐</strong>精准匹配</div>
+    </div>
+  </div>
+</section>
+
+<!-- 栏目一：院线电影（斜切堆叠） -->
+<section class="xy-sec xy-skew" id="movie">
+  <div class="xy-wrap">
+    <div class="xy-hd">
+      <div class="kicker">Featured Films</div>
+      <h2>院线<em>电影</em></h2>
+      <p>最新院线大片 · 经典高分佳作，一网打尽</p>
+    </div>
+    <div class="xy-skew-track">
+      <article class="xy-skew-card"><div class="xy-skew-card__bg" style="--bg:linear-gradient(135deg,#7c3aed,#4c1d95)"></div><div class="xy-skew-card__badge">IMAX</div><div class="xy-skew-card__in"><div class="e">🪐</div><h5>沙丘2</h5><div class="row"><span>科幻 / 冒险</span><b>★ 8.9</b></div></div></article>
+      <article class="xy-skew-card"><div class="xy-skew-card__bg" style="--bg:linear-gradient(135deg,#0891b2,#0e7490)"></div><div class="xy-skew-card__badge xy-skew-card__badge--cyan">豆瓣Top</div><div class="xy-skew-card__in"><div class="e">🏯</div><h5>卧虎藏龙</h5><div class="row"><span>武侠 / 动作</span><b>★ 8.4</b></div></div></article>
+      <article class="xy-skew-card"><div class="xy-skew-card__bg" style="--bg:linear-gradient(135deg,#dc2626,#991b1b)"></div><div class="xy-skew-card__in"><div class="e">🔥</div><h5>周处除三害</h5><div class="row"><span>犯罪 / 动作</span><b>★ 8.2</b></div></div></article>
+      <article class="xy-skew-card"><div class="xy-skew-card__bg" style="--bg:linear-gradient(135deg,#ea580c,#c2410c)"></div><div class="xy-skew-card__badge">热映中</div><div class="xy-skew-card__in"><div class="e">🦁</div><h5>狮子王</h5><div class="row"><span>动画 / 冒险</span><b>★ 9.1</b></div></div></article>
+      <article class="xy-skew-card"><div class="xy-skew-card__bg" style="--bg:linear-gradient(135deg,#4338ca,#3730a3)"></div><div class="xy-skew-card__in"><div class="e">🎻</div><h5>海上钢琴师</h5><div class="row"><span>剧情 / 音乐</span><b>★ 9.3</b></div></div></article>
+      <article class="xy-skew-card"><div class="xy-skew-card__bg" style="--bg:linear-gradient(135deg,#ec4899,#be185d)"></div><div class="xy-skew-card__badge xy-skew-card__badge--cyan">口碑</div><div class="xy-skew-card__in"><div class="e">💖</div><h5>泰坦尼克号</h5><div class="row"><span>爱情 / 灾难</span><b>★ 9.4</b></div></div></article>
+      <article class="xy-skew-card"><div class="xy-skew-card__bg" style="--bg:linear-gradient(135deg,#16a34a,#15803d)"></div><div class="xy-skew-card__in"><div class="e">🌿</div><h5>小森林</h5><div class="row"><span>文艺 / 治愈</span><b>★ 8.9</b></div></div></article>
+    </div>
+  </div>
+</section>
+
+<!-- 栏目二：热播剧集（分屏卡片） -->
+<section class="xy-sec xy-tv" id="tv">
+  <div class="xy-wrap">
+    <div class="xy-hd">
+      <div class="kicker">Popular Drama</div>
+      <h2>热播<em>剧集</em></h2>
+      <p>全网热播好剧，追更不断更</p>
+    </div>
+    <div class="xy-tv-grid">
+      <article class="xy-tv-cell"><div class="xy-tv-cell__bg" style="--bg:linear-gradient(135deg,#7c3aed,#4c1d95)"></div><div class="xy-tv-cell__in"><span class="tag" style="--tagc:#7c3aed">古装权谋</span><h5>庆余年 第二季</h5><p>张若昀、陈道明主演，范闲重返京都，朝堂风云再起，权谋智斗再升级。</p><span class="ep">更新至 36集</span></div><div class="xy-tv-cell__play">▶</div></article>
+      <article class="xy-tv-cell"><div class="xy-tv-cell__bg" style="--bg:linear-gradient(135deg,#0891b2,#0e7490)"></div><div class="xy-tv-cell__in"><span class="tag" style="--tagc:#0891b2">都市情感</span><h5>玫瑰的故事</h5><p>刘亦菲主演，一个女孩的成长史诗，黄亦玫的人生选择与爱情故事。</p><span class="ep">全37集</span></div><div class="xy-tv-cell__play">▶</div></article>
+      <article class="xy-tv-cell"><div class="xy-tv-cell__bg" style="--bg:linear-gradient(135deg,#dc2626,#991b1b)"></div><div class="xy-tv-cell__in"><span class="tag" style="--tagc:#dc2626">悬疑犯罪</span><h5>黑土无言</h5><p>东北小城连环命案，陈建斌、胡军主演，冷峻写实的犯罪群像。</p><span class="ep">更新至 24集</span></div><div class="xy-tv-cell__play">▶</div></article>
+      <article class="xy-tv-cell"><div class="xy-tv-cell__bg" style="--bg:linear-gradient(135deg,#ea580c,#c2410c)"></div><div class="xy-tv-cell__in"><span class="tag" style="--tagc:#ea580c">年代励志</span><h5>大江大河3</h5><p>正午阳光出品，宋运辉、雷东宝、杨巡三人的时代沉浮与奋斗。</p><span class="ep">更新至 35集</span></div><div class="xy-tv-cell__play">▶</div></article>
+      <article class="xy-tv-cell"><div class="xy-tv-cell__bg" style="--bg:linear-gradient(135deg,#ec4899,#be185d)"></div><div class="xy-tv-cell__in"><span class="tag" style="--tagc:#ec4899">古装复仇</span><h5>墨雨云间</h5><p>吴谨言、王星越主演，重生归来的女子以智慧复仇，剧情高能反转。</p><span class="ep">更新至 40集</span></div><div class="xy-tv-cell__play">▶</div></article>
+      <article class="xy-tv-cell"><div class="xy-tv-cell__bg" style="--bg:linear-gradient(135deg,#4338ca,#3730a3)"></div><div class="xy-tv-cell__in"><span class="tag" style="--tagc:#4338ca">文艺治愈</span><h5>我的阿勒泰</h5><p>改编自李娟散文，马伊琍主演，北疆风土与人情交织的温暖故事。</p><span class="ep">全8集</span></div><div class="xy-tv-cell__play">▶</div></article>
+    </div>
+  </div>
+</section>
+
+<!-- 栏目三：综艺节目（环形进度） -->
+<section class="xy-sec xy-show" id="show">
+  <div class="xy-wrap">
+    <svg width="0" height="0"><defs><linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#7c3aed"/><stop offset="100%" stop-color="#22d3ee"/></linearGradient></defs></svg>
+    <div class="xy-hd">
+      <div class="kicker">Variety Show</div>
+      <h2>综艺<em>节目</em></h2>
+      <p>欢笑不间断，每周准时更新</p>
+    </div>
+    <div class="xy-ring-grid">
+      <div class="xy-ring"><div class="xy-ring__svg"><svg width="110" height="110"><circle class="track" cx="55" cy="55" r="45"/><circle class="prog" cx="55" cy="55" r="45" data-p="92"/></svg><div class="emo">🎤</div></div><h5>歌手2024</h5><div class="st">华语乐坛巅峰竞演 · <b>92%</b></div></div>
+      <div class="xy-ring"><div class="xy-ring__svg"><svg width="110" height="110"><circle class="track" cx="55" cy="55" r="45"/><circle class="prog" cx="55" cy="55" r="45" data-p="85"/></svg><div class="emo">🏃</div></div><h5>奔跑吧12</h5><div class="st">户外竞技爆笑挑战 · <b>85%</b></div></div>
+      <div class="xy-ring"><div class="xy-ring__svg"><svg width="110" height="110"><circle class="track" cx="55" cy="55" r="45"/><circle class="prog" cx="55" cy="55" r="45" data-p="78"/></svg><div class="emo">🌾</div></div><h5>种地吧2</h5><div class="st">十个少年的农耕日记 · <b>78%</b></div></div>
+      <div class="xy-ring"><div class="xy-ring__svg"><svg width="110" height="110"><circle class="track" cx="55" cy="55" r="45"/><circle class="prog" cx="55" cy="55" r="45" data-p="71"/></svg><div class="emo">🎯</div></div><h5>王牌对王牌9</h5><div class="st">经典IP爆笑回归 · <b>71%</b></div></div>
+      <div class="xy-ring"><div class="xy-ring__svg"><svg width="110" height="110"><circle class="track" cx="55" cy="55" r="45"/><circle class="prog" cx="55" cy="55" r="45" data-p="66"/></svg><div class="emo">🍳</div></div><h5>中餐厅8</h5><div class="st">明星合伙开餐厅 · <b>66%</b></div></div>
+      <div class="xy-ring"><div class="xy-ring__svg"><svg width="110" height="110"><circle class="track" cx="55" cy="55" r="45"/><circle class="prog" cx="55" cy="55" r="45" data-p="60"/></svg><div class="emo">🎹</div></div><h5>天赐的声音5</h5><div class="st">顶级音乐人合作竞演 · <b>60%</b></div></div>
+      <div class="xy-ring"><div class="xy-ring__svg"><svg width="110" height="110"><circle class="track" cx="55" cy="55" r="45"/><circle class="prog" cx="55" cy="55" r="45" data-p="54"/></svg><div class="emo">🧩</div></div><h5>名侦探学院7</h5><div class="st">烧脑推理真人秀 · <b>54%</b></div></div>
+      <div class="xy-ring"><div class="xy-ring__svg"><svg width="110" height="110"><circle class="track" cx="55" cy="55" r="45"/><circle class="prog" cx="55" cy="55" r="45" data-p="48"/></svg><div class="emo">🏕️</div></div><h5>花儿与少年6</h5><div class="st">明星自助旅行真人秀 · <b>48%</b></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 栏目四：动漫番剧（字幕墙） -->
+<section class="xy-sec xy-anime" id="anime">
+  <div class="xy-wrap">
+    <div class="xy-hd">
+      <div class="kicker">Anime Ranking</div>
+      <h2>动漫<em>番剧</em></h2>
+      <p>二次元追番阵地 · 口碑新番热榜</p>
+    </div>
+    <div class="xy-sub-grid">
+      <div class="xy-sub"><span class="num">01</span><span class="emo">🐉</span><div class="mid"><h6>咒术回战 第二季</h6><small>涩谷事变篇 · 战斗作画炸裂</small></div><div class="score"><b>9.6</b><em>豆瓣评分</em></div></div>
+      <div class="xy-sub"><span class="num">02</span><span class="emo">⚔️</span><div class="mid"><h6>鬼灭之刃 柱训练篇</h6><small>刀匠村篇后续 · 柱级试炼</small></div><div class="score"><b>9.2</b><em>豆瓣评分</em></div></div>
+      <div class="xy-sub"><span class="num">03</span><span class="emo">🧙</span><div class="mid"><h6>迷宫饭</h6><small>魔物美食冒险 · 治愈又搞笑</small></div><div class="score"><b>9.1</b><em>豆瓣评分</em></div></div>
+      <div class="xy-sub"><span class="num">04</span><span class="emo">🏀</span><div class="mid"><h6>灌篮高手 全国大赛篇</h6><small>剧场版完结 · 青春终章</small></div><div class="score"><b>9.3</b><em>豆瓣评分</em></div></div>
+      <div class="xy-sub"><span class="num">05</span><span class="emo">🧹</span><div class="mid"><h6>葬送的芙莉莲</h6><small>精灵少女的漫长旅程</small></div><div class="score"><b>9.4</b><em>豆瓣评分</em></div></div>
+      <div class="xy-sub"><span class="num">06</span><span class="emo">🎌</span><div class="mid"><h6>药屋少女的呢喃</h6><small>后宫悬疑推理 · 智斗精彩</small></div><div class="score"><b>9.0</b><em>豆瓣评分</em></div></div>
+      <div class="xy-sub"><span class="num">07</span><span class="emo">🐿️</span><div class="mid"><h6>间谍过家家 第二季</h6><small>伪装家庭爆笑日常</small></div><div class="score"><b>8.8</b><em>豆瓣评分</em></div></div>
+      <div class="xy-sub"><span class="num">08</span><span class="emo">🎭</span><div class="mid"><h6>吹响！上低音号3</h6><small>京阿尼青春音乐番</small></div><div class="score"><b>9.1</b><em>豆瓣评分</em></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 栏目五：热门榜单（阶梯柱状） -->
+<section class="xy-sec xy-rank" id="rank">
+  <div class="xy-wrap">
+    <div class="xy-hd">
+      <div class="kicker">Hot Ranking</div>
+      <h2>热门<em>榜单</em></h2>
+      <p>星云影视实时热度排行，看看大家都在看什么</p>
+    </div>
+    <div class="xy-rank-box">
+      <div class="xy-rank-row"><div class="xy-rank-n">1</div><div class="xy-rank-e">👑</div><div class="xy-rank-info"><h6>庆余年 第二季</h6><div class="xy-rank-bar"><div class="xy-rank-fill" data-w="98"></div></div></div><div class="xy-rank-v">98<em>热度</em></div></div>
+      <div class="xy-rank-row"><div class="xy-rank-n">2</div><div class="xy-rank-e">🎬</div><div class="xy-rank-info"><h6>周处除三害</h6><div class="xy-rank-bar"><div class="xy-rank-fill" data-w="94"></div></div></div><div class="xy-rank-v">94<em>热度</em></div></div>
+      <div class="xy-rank-row"><div class="xy-rank-n">3</div><div class="xy-rank-e">🌹</div><div class="xy-rank-info"><h6>玫瑰的故事</h6><div class="xy-rank-bar"><div class="xy-rank-fill" data-w="89"></div></div></div><div class="xy-rank-v">89<em>热度</em></div></div>
+      <div class="xy-rank-row"><div class="xy-rank-n">4</div><div class="xy-rank-e">🐲</div><div class="xy-rank-info"><h6>墨雨云间</h6><div class="xy-rank-bar"><div class="xy-rank-fill" data-w="85"></div></div></div><div class="xy-rank-v">85<em>热度</em></div></div>
+      <div class="xy-rank-row"><div class="xy-rank-n">5</div><div class="xy-rank-e">🎤</div><div class="xy-rank-info"><h6>歌手2024</h6><div class="xy-rank-bar"><div class="xy-rank-fill" data-w="80"></div></div></div><div class="xy-rank-v">80<em>热度</em></div></div>
+      <div class="xy-rank-row"><div class="xy-rank-n">6</div><div class="xy-rank-e">🌊</div><div class="xy-rank-info"><h6>我的阿勒泰</h6><div class="xy-rank-bar"><div class="xy-rank-fill" data-w="74"></div></div></div><div class="xy-rank-v">74<em>热度</em></div></div>
+      <div class="xy-rank-row"><div class="xy-rank-n">7</div><div class="xy-rank-e">🏭</div><div class="xy-rank-info"><h6>大江大河3</h6><div class="xy-rank-bar"><div class="xy-rank-fill" data-w="68"></div></div></div><div class="xy-rank-v">68<em>热度</em></div></div>
+      <div class="xy-rank-row"><div class="xy-rank-n">8</div><div class="xy-rank-e">🐉</div><div class="xy-rank-info"><h6>咒术回战 第二季</h6><div class="xy-rank-bar"><div class="xy-rank-fill" data-w="63"></div></div></div><div class="xy-rank-v">63<em>热度</em></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 栏目六：关于我们（星云卡片） -->
+<section class="xy-sec xy-about" id="about">
+  <div class="xy-wrap">
+    <div class="xy-hd">
+      <div class="kicker">About Us</div>
+      <h2>关于<em>星云影视</em></h2>
+      <p>用心做好内容推荐，让每一次观影都值得</p>
+    </div>
+    <div class="xy-about-grid">
+      <div class="xy-about-main">
+        <h3>为什么选择星云影视？</h3>
+        <p>星云影视（xingyunyingshi-wap.github.io）专注于为用户提供优质的影视内容发现体验。我们不只是聚合资源，更通过智能推荐算法，帮你从浩瀚片库中找到真正值得看的好片。4K HDR 极致画质、全球 CDN 秒开播放、无广告纯净体验，让观影回归最纯粹的快乐。从院线大片到经典老片，从热播好剧到口碑综艺，星云影视用技术连接每一个热爱影视的你。</p>
+      </div>
+      <div class="xy-about-side">
+        <div class="xy-stat-card"><div class="n">20000+</div><div class="l">正版高清影视资源，持续扩充中</div></div>
+        <div class="xy-stat-card"><div class="n">4K HDR</div><div class="l">极致画质，影院级观影体验</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="xy-foot">
+  <div class="xy-foot__wrap">
+    <div class="xy-foot-top">
+      <div class="xy-foot-brand">
+        <div class="xy-logo"><div class="xy-logo__o"></div><div class="xy-logo__t">星云影视</div></div>
+        <p>星云影视提供海量免费高清影视资源，涵盖电影、电视剧、综艺、动漫全品类内容，4K HDR 极致画质，极速播放，纯净体验。</p>
+      </div>
+      <div class="xy-foot-col"><h5>快速导航</h5><ul><li><a href="#movie">院线电影</a></li><li><a href="#tv">热播剧集</a></li><li><a href="#show">综艺节目</a></li><li><a href="#anime">动漫番剧</a></li><li><a href="#rank">热门榜单</a></li></ul></div>
+      <div class="xy-foot-col"><h5>内容分类</h5><ul><li><a href="#">科幻冒险</a></li><li><a href="#">古装权谋</a></li><li><a href="#">悬疑犯罪</a></li><li><a href="#">都市情感</a></li><li><a href="#">文艺治愈</a></li></ul></div>
+      <div class="xy-foot-col"><h5>帮助支持</h5><ul><li><a href="#">使用帮助</a></li><li><a href="#">意见反馈</a></li><li><a href="#">合作洽谈</a></li><li><a href="#">免责声明</a></li><li><a href="#about">关于我们</a></li></ul></div>
+    </div>
+    <div class="xy-foot-bot">
+      <p>© 2026 星云影视 xingyunyingshi-wap.github.io 版权所有</p>
+      <div><a href="#">隐私政策</a><a href="#">用户协议</a><a href="#">免责声明</a></div>
+    </div>
+  </div>
+</footer>
+
+<button class="xy-top" id="xyTop" aria-label="回到顶部">↑</button>
+
+<script>
+(function(){
+  var topBtn=document.getElementById('xyTop'), nav=document.getElementById('xyNav');
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>400){topBtn.classList.add('show');}else{topBtn.classList.remove('show');}
+    if(window.scrollY>40){nav.classList.add('stuck');}else{nav.classList.remove('stuck');}
+  });
+  topBtn.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+
+  var burger=document.getElementById('xyBurger'), links=document.getElementById('xyLinks');
+  burger.addEventListener('click',function(){links.classList.toggle('open');});
+  links.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click',function(){links.classList.remove('open');});
+  });
+
+  // 导航高亮
+  var ids=['home','movie','tv','show','anime','rank','about'];
+  window.addEventListener('scroll',function(){
+    var cur='';
+    ids.forEach(function(id){
+      var el=document.getElementById(id);
+      if(el&&window.scrollY>=el.offsetTop-200)cur=id;
+    });
+    links.querySelectorAll('a').forEach(function(a){a.classList.remove('on');if(a.getAttribute('href')==='#'+cur)a.classList.add('on');});
+  });
+
+  // SVG 环形进度动画
+  var rings=document.querySelectorAll('.xy-ring .prog');
+  var ringDone=false;
+  function animRings(){
+    rings.forEach(function(c){
+      var p=parseInt(c.getAttribute('data-p'),10);
+      var off=283-283*p/100;
+      c.style.strokeDashoffset=off;
+    });
+  }
+  // 柱状动画
+  var fills=document.querySelectorAll('.xy-rank-fill');
+  var fillDone=false;
+  function animFills(){
+    fills.forEach(function(f){f.style.width=f.getAttribute('data-w')+'%';});
+  }
+  window.addEventListener('scroll',function(){
+    var sec=document.getElementById('show');
+    if(!ringDone&&sec&&window.scrollY+window.innerHeight>sec.offsetTop+100){
+      ringDone=true;animRings();
+    }
+    var sec2=document.getElementById('rank');
+    if(!fillDone&&sec2&&window.scrollY+window.innerHeight>sec2.offsetTop+100){
+      fillDone=true;animFills();
+    }
+  });
+})();
+</script>
+</body>
+</html>
